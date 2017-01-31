@@ -15,15 +15,17 @@ then
     yum install tmux
 fi
 
+cwd=pwd
+
+echo "Working from $cwd as $USER ($iam)"
+
 # Run the remainder of the script as $iam
 su $iam
 
-
 # vim setup
-ln -s ./vim/vimrc ~/.vimrc
-ln -s ./vim ~/.vim
+ln -s $cwd/vim/vimrc ~/.vimrc
+ln -s $cwd/vim ~/.vim
 curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
-cd ~/.vim/bundle
 plugins=( "https://github.com/Raimondi/delimitMate.git"
           "https://github.com/scrooloose/nerdtree.git"
           "https://github.com/scrooloose/nerdcommenter.git"
@@ -46,7 +48,7 @@ plugins=( "https://github.com/Raimondi/delimitMate.git"
 for plugin in "${plugins[@]}"
 do
     echo "Installing $plugin"
-    git clone $plugin
+    git clone $plugin ~/.vim/bundle
 done
 
 # symbolic links
@@ -67,14 +69,14 @@ do
     if [ -e ~/.$link ]
     then
         echo "Copying .$link to save.$link"
-        cp .$link save.$link
+        cp ~/.$link ~/save.$link
     fi
     echo "Creating symlink ~/.$link -> dotfiles/misc/$link"
-    ln -s ./misc/$link ~/.$link
+    ln -s $cwd/misc/$link ~/.$link
 done
 
 # One-off fixes
-ln -s ./misc/dircolors ~/.dir_colors
+ln -s ~/.dircolors ~/.dir_colors
 
 
 
