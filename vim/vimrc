@@ -1,0 +1,104 @@
+execute pathogen#infect()
+
+let g:flake8_show_quickfix=0 "don't show
+let g:autopep8_select="E127,E128,E201,E202,E203,E221,E225,E231,E251,E265,E302,E303,E305,E703,W191,W291,W293,W391"
+let g:autopep8_disable_show_diff=1
+let g:autopep8_max_line_length=119
+let g:NERDDefaultAlign = 'left'
+let g:indent_guides_guide_size = 1
+let g:indent_guides_color_change_percent = 3
+filetype plugin on
+noremap  K k
+set nocompatible
+source $VIMRUNTIME/vimrc_example.vim
+source $VIMRUNTIME/mswin.vim
+behave mswin
+set autoindent noautowrite showmatch wrapmargin=0 report=1
+set nowrap
+set autoread
+set et sw=4 smarttab
+set copyindent preserveindent
+set ignorecase softtabstop=0 tabstop=4 shiftwidth=4 number
+set syntax=c printfont=Courier:h7
+set printoptions=left:5,top:3,bottom:3,number:y,duplex:long,paper:letter
+set printheader=%<%f%h%m%=Page\ %N
+set printheader=%<%F\ \ \ %d\ \ %h%m%=Page\ %N
+set guifont=Lucida_console:h10
+set ff=unix
+syntax enable
+set background=dark
+colorscheme solarized
+set undodir=~/.vim/undo//
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swp//
+set ttymouse=xterm2
+set title
+set ls=2
+let g:lightline = {
+      \ 'colorscheme': 'solarized',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component': {
+      \   'readonly': '%{&filetype=="help"?"":&readonly?"⭤":""}',
+      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
+      \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
+      \ },
+      \ 'component_visible_condition': {
+      \   'readonly': '(&filetype!="help"&& &readonly)',
+      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
+      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+      \ }
+      \ }
+let mapleader=","
+map     {!}sort -b
+map  h  1G
+map  H  1G
+map  F  G
+map  V  
+map  U  
+map  T  k
+map  S  j
+map  Q   i
+map  P   x
+map  L   O
+map  M   dd
+map  K   D
+map  J   DjdG$
+map  g j
+map  v i l
+map  V R l
+map! A  ka
+map! D  ha
+map! C  la
+map! B  ja
+map! L  
+map! Q  
+map! R  
+
+if &term =~ "xterm"
+    " 256 colors
+    let &t_Co = 256
+    " restore screen after quitting
+    let &t_ti = "\<Esc>7\<Esc>[r\<Esc>[?47h"
+    let &t_te = "\<Esc>[?47l\<Esc>8"
+    if has("terminfo")
+        let &t_Sf = "\<Esc>[3%p1%dm"
+        let &t_Sb = "\<Esc>[4%p1%dm"
+    else
+        let &t_Sf = "\<Esc>[3%dm"
+        let &t_Sb = "\<Esc>[4%dm"
+    endif
+endif
+let g:solarized_termcolors=256
+
+noremap <Leader>T :TlistToggle
+noremap <Leader>js :%!python -m json.tool
+noremap <Leader>w :FixWhitespace
+noremap <Leader>n :NERDTree
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
