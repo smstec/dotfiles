@@ -1,15 +1,15 @@
 #!/bin/bash
 # run as root
 # This is just a dumb list of install steps to set up a new environment
-if ["$USER" -ne "root"]
+if [ $(id -u) != "0"]
 then
     echo "Must run as root"
     exit 1
 fi
 
-$iam=$1
+iam=$1
 
-if [ "$iam" -eq "ec2-user" ]
+if [ "$iam" == "ec2-user" ]
 then
     # Install all of the stuff not on ec2
     yum install tmux
