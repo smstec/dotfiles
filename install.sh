@@ -1,26 +1,29 @@
 #!/bin/bash
+
+set -e 
+
 # run as root
 # This is just a dumb list of install steps to set up a new environment
-if [ $(id -u) != "0"]
-then
-    echo "Must run as root"
-    exit 1
-fi
-
-iam=$1
-
-if [ "$iam" == "ec2-user" ]
-then
-    # Install all of the stuff not on ec2
-    yum install tmux
-fi
-
+#if [ $(id -u) != "0"]
+#then
+#    echo "Must run as root"
+#    exit 1
+#fi
+#
+#iam=$1
+#
+#if [ "$iam" == "ec2-user" ]
+#then
+#    # Install all of the stuff not on ec2
+#    yum install tmux
+#fi
+#
 cwd=pwd
 
-echo "Working from $cwd as $USER ($iam)"
+#echo "Working from $cwd as $USER ($iam)"
 
 # Run the remainder of the script as $iam
-su $iam
+#su $iam
 
 # vim setup
 ln -s $cwd/vim/vimrc ~/.vimrc
