@@ -1,15 +1,15 @@
 #!/bin/bash
 # run as root
 # This is just a dumb list of install steps to set up a new environment
-if ["$USER" -ne "root"]
+if [ $(id -u) != "0"]
 then
     echo "Must run as root"
     exit 1
 fi
 
-$iam=$1
+iam=$1
 
-if [ "$iam" -eq "ec2-user" ]
+if [ "$iam" == "ec2-user" ]
 then
     # Install all of the stuff not on ec2
     yum install tmux
@@ -48,7 +48,8 @@ plugins=( "https://github.com/Raimondi/delimitMate.git"
 for plugin in "${plugins[@]}"
 do
     echo "Installing $plugin"
-    git clone $plugin ~/.vim/bundle
+    folder=$(echo $plugin | awk -F/ '{print $NF}' | awk -F. '{print $1}')
+    git clone $plugin ~/.vim/bundle/$folder
 done
 
 # symbolic links
@@ -69,7 +70,7 @@ do
     if [ -e ~/.$link ]
     then
         echo "Copying .$link to save.$link"
-        cp ~/.$link ~/save.$link
+        mv ~/.$link ~/save.$link
     fi
     echo "Creating symlink ~/.$link -> dotfiles/misc/$link"
     ln -s $cwd/misc/$link ~/.$link
