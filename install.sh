@@ -2,33 +2,25 @@
 
 set -e
 
-# run as root
-# This is just a dumb list of install steps to set up a new environment
-#if [ $(id -u) != "0"]
-#then
-#    echo "Must run as root"
-#    exit 1
-#fi
-#
-#iam=$1
-#
-#if [ "$iam" == "ec2-user" ]
-#then
-#    # Install all of the stuff not on ec2
+# # Install all of the stuff not on ec2 - probably need to sudo
 #    yum install tmux
-#fi
-#
+#    yum install ctags
+#    yum group install "Development Tools"
+#    yum install numpy
+#    pip install boto3
+#    pip install arrow
+#    pip install click
+#    pip install numpy
+
 cwd=$(pwd)
-
-#echo "Working from $cwd as $USER ($iam)"
-
-# Run the remainder of the script as $iam
-#su $iam
 
 # vim setup
 ln -s $cwd/vim/vimrc ~/.vimrc
 ln -s $cwd/vim ~/.vim
-mkdir ~/.vim/autoload
+mkdir -p ~/.vim/autoload
+mkdir -p ~/.vim/backup
+mkdir -p ~/.vim/swp
+mkdir -p ~/.vim/undo
 curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 plugins=( "https://github.com/Raimondi/delimitMate.git"
           "https://github.com/scrooloose/nerdtree.git"
@@ -59,14 +51,12 @@ done
 # symbolic links
 symlinks=( 'flake8'
            'sqliterc'
-           'keras'
            'dircolors'
            'tmux.conf'
            'theanorc'
            'inputrc'
            'bashrc'
            'bash_profile'
-           'bash_logout'
            'gitignore_global'
          )
 for link in "${symlinks[@]}"
@@ -82,6 +72,7 @@ done
 
 # One-off fixes
 ln -s ~/.dircolors ~/.dir_colors
+ln -s $cwd/keras ~/.keras
 
 
 

@@ -12,6 +12,7 @@ alias tmuxa='tmux -2 attach-session -t'
 alias lm='ls -al; du -h'
 # alias venv='source /home/smstec/src/venv/bin/activate'
 alias dbget='~/.dbget.sh'
+alias tsd='~/src/scripts/tsd.sh'
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
@@ -24,6 +25,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH
 #export CUDA_HOME=/usr/local/cuda
 #export LIBRARY_PATH=$LIBRARY_PATH:/root/InvNeuralNet/rocksdb:/usr/local/lib
 export DISPLAY=:0
+export PYTHONSTARTUP=~/.pystartup
 # /etc/bash.bashrc
 #
 # https://wiki.archlinux.org/index.php/Color_Bash_Prompt
@@ -58,13 +60,6 @@ case ${TERM} in
 		;;
 esac
 
-# fortune is a simple program that displays a pseudorandom message
-# from a database of quotations at logon and/or logout.
-# If you wish to use it, please install "fortune-mod" from the
-# official repositories, then uncomment the following line:
-
-# [[ "$PS1" ]] && /usr/bin/fortune
-
 # Set colorful PS1 only on colorful terminals.
 # dircolors --print-database uses its own built-in database
 # instead of using /etc/DIR_COLORS. Try to use the external file
@@ -86,7 +81,7 @@ parse_git_branch() {
 }
 
 if [[ $'\n'${match_lhs} == *$'\n'"TERM "${safe_term}* ]] ; then
-	
+
 	# we have colors :-)
 
 	# Enable colors for ls, etc. Prefer ~/.dir_colors
@@ -100,17 +95,10 @@ if [[ $'\n'${match_lhs} == *$'\n'"TERM "${safe_term}* ]] ; then
 
 	PS1="$(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]\h'; else echo '\[\033[01;32m\]\u@\h$(parse_git_branch)'; fi)\[\033[01;34m\] \w \$([[ \$? != 0 ]] && echo \"\[\033[01;31m\]:(\[\033[01;34m\] \")\\$\[\033[00m\] "
 
-	# Use this other PS1 string if you want \W for root and \w for all other users:
-	# PS1="$(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]\h\[\033[01;34m\] \W'; else echo '\[\033[01;32m\]\u@\h\[\033[01;34m\] \w'; fi) \$([[ \$? != 0 ]] && echo \"\[\033[01;31m\]:(\[\033[01;34m\] \")\\$\[\033[00m\] "
-
 	alias ls="ls --color=auto"
 	alias dir="dir --color=auto"
 	alias grep="grep --color=auto"
 	alias dmesg='dmesg --color'
-
-	# Uncomment the "Color" line in /etc/pacman.conf instead of uncommenting the following line...!
-
-	# alias pacman="pacman --color=auto"
 
 else
 
@@ -130,9 +118,8 @@ PS4="+ "
 # Try to keep environment pollution down, EPA loves us.
 unset safe_term match_lhs
 
-# Try to enable the auto-completion (type: "pacman -S bash-completion" to install it).
+# Try to enable the auto-completion
 [ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 
-# Try to enable the "Command not found" hook ("pacman -S pkgfile" to install it).
-# See also: https://wiki.archlinux.org/index.php/Bash#The_.22command_not_found.22_hook
+# Try to enable the "Command not found" hook
 [ -r /usr/share/doc/pkgfile/command-not-found.bash ] && . /usr/share/doc/pkgfile/command-not-found.bash
