@@ -7,23 +7,29 @@ let g:autopep8_max_line_length=119
 let g:NERDDefaultAlign = 'left'
 let g:indent_guides_guide_size = 1
 let g:indent_guides_color_change_percent = 3
-filetype plugin on
+filetype indent plugin on
 noremap  K k
 set nocompatible
-source $VIMRUNTIME/vimrc_example.vim
-source $VIMRUNTIME/mswin.vim
-behave mswin
-set autoindent noautowrite showmatch wrapmargin=0 report=1
+" source $VIMRUNTIME/vimrc_example.vim
+" source $VIMRUNTIME/mswin.vim
+" behave mswin
+set autoindent
+set noautowrite
+set showmatch
+set wrapmargin=0
+set report=1
 set nowrap
 set autoread
-set et sw=4 smarttab
-set copyindent preserveindent
-set ignorecase softtabstop=0 tabstop=4 shiftwidth=4 number
-set syntax=c printfont=Courier:h7
-set printoptions=left:5,top:3,bottom:3,number:y,duplex:long,paper:letter
-set printheader=%<%f%h%m%=Page\ %N
-set printheader=%<%F\ \ \ %d\ \ %h%m%=Page\ %N
-set guifont=Lucida_console:h10
+set expandtab
+set smarttab
+set preserveindent
+set ignorecase
+set softtabstop=4
+set tabstop=4
+set shiftwidth=4
+set number
+set textwidth=119
+set syntax=python printfont=Courier:h7
 set ff=unix
 syntax enable
 set background=dark

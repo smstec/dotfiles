@@ -10,7 +10,7 @@ alias tmux='tmux -2'
 alias tmuxn='tmux -2 new-session -s'
 alias tmuxa='tmux -2 attach-session -t'
 alias lm='ls -al; du -h'
-alias venv='source /home/smstec/src/venv/bin/activate'
+# alias venv='source /home/smstec/src/venv/bin/activate'
 alias dbget='~/.dbget.sh'
 
 # Source global definitions
@@ -136,4 +136,3 @@ unset safe_term match_lhs
 # Try to enable the "Command not found" hook ("pacman -S pkgfile" to install it).
 # See also: https://wiki.archlinux.org/index.php/Bash#The_.22command_not_found.22_hook
 [ -r /usr/share/doc/pkgfile/command-not-found.bash ] && . /usr/share/doc/pkgfile/command-not-found.bash
-venv

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e 
+set -e
 
 # run as root
 # This is just a dumb list of install steps to set up a new environment
@@ -18,7 +18,7 @@ set -e
 #    yum install tmux
 #fi
 #
-cwd=pwd
+cwd=$(pwd)
 
 #echo "Working from $cwd as $USER ($iam)"
 
@@ -28,6 +28,7 @@ cwd=pwd
 # vim setup
 ln -s $cwd/vim/vimrc ~/.vimrc
 ln -s $cwd/vim ~/.vim
+mkdir ~/.vim/autoload
 curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 plugins=( "https://github.com/Raimondi/delimitMate.git"
           "https://github.com/scrooloose/nerdtree.git"
