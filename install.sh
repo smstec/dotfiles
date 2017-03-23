@@ -1,19 +1,16 @@
 #!/bin/bash
 
-set -e 
+set -e
 
 # # Install all of the stuff not on ec2 - probably need to sudo
 #    yum install tmux
 #    yum install ctags
-#    yum group install "Development Tools" 
+#    yum group install "Development Tools"
 #    yum install numpy
 #    pip install boto3
 #    pip install arrow
 #    pip install click
 #    pip install numpy
-
-
-
 
 cwd=$(pwd)
 
