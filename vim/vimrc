@@ -1,12 +1,25 @@
 execute pathogen#infect()
 
+set ignorecase
+set number
+set softtabstop=4
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set smarttab
 let g:flake8_show_quickfix=0 "don't show
 let g:autopep8_select="E127,E128,E201,E202,E203,E221,E225,E231,E251,E265,E302,E303,E305,E703,W191,W291,W293,W391"
 let g:autopep8_disable_show_diff=1
-let g:autopep8_max_line_length=119
+let g:autopep8_max_line_length=109
 let g:NERDDefaultAlign = 'left'
 let g:indent_guides_guide_size = 1
 let g:indent_guides_color_change_percent = 3
+let g:indent_guides_color_change_percent = 3
+let g:gitgutter_max_signs = 1000
+let Tlist_Use_Right_Window = 1
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd vimenter * if !argc() | NERDTree | endif
+autocmd BufNewFile *.py source ~/.vim/ftplugin/pytemplate.vim
 filetype plugin on
 noremap  K k
 set nocompatible
@@ -16,9 +29,7 @@ behave mswin
 set autoindent noautowrite showmatch wrapmargin=0 report=1
 set nowrap
 set autoread
-set et sw=4 smarttab
 set copyindent preserveindent
-set ignorecase softtabstop=0 tabstop=4 shiftwidth=4 number
 set syntax=c printfont=Courier:h7
 set printoptions=left:5,top:3,bottom:3,number:y,duplex:long,paper:letter
 set printheader=%<%f%h%m%=Page\ %N
@@ -27,7 +38,8 @@ set guifont=Lucida_console:h10
 set ff=unix
 syntax enable
 set background=dark
-colorscheme solarized
+"colorscheme solarized
+color dracula
 set undodir=~/.vim/undo//
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swp//
