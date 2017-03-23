@@ -24,6 +24,7 @@ mkdir -p ~/.vim/autoload
 mkdir -p ~/.vim/backup
 mkdir -p ~/.vim/swp
 mkdir -p ~/.vim/undo
+mkdir -p ~/.vim/ftplugin
 curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 plugins=( "https://github.com/Raimondi/delimitMate.git"
           "https://github.com/scrooloose/nerdtree.git"
@@ -43,6 +44,7 @@ plugins=( "https://github.com/Raimondi/delimitMate.git"
           "https://github.com/bronson/vim-trailing-whitespace.git"
           "https://github.com/itchyny/lightline.vim.git"
           "https://github.com/altercation/vim-colors-solarized.git"
+          "https://github.com/dracula/vim.git"
           )
 for plugin in "${plugins[@]}"
 do
@@ -76,6 +78,8 @@ done
 # One-off fixes
 ln -s ~/.dircolors ~/.dir_colors
 ln -s $cwd/keras ~/.keras
+ln -s $cwd/tmuxp ~/.tmuxp
+ln -s $cwd/vim/ftplugin/pytemplate.vim ~/.vim/ftplugin/pytemplate.vim
 
 
 

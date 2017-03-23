@@ -2,6 +2,7 @@
 
 # User specific aliases and functions
 
+
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
@@ -10,10 +11,11 @@ alias tmux='tmux -2'
 alias tmuxn='tmux -2 new-session -s'
 alias tmuxa='tmux -2 attach-session -t'
 alias lm='ls -al; du -h'
-alias venv='source /home/smstec/src/venv/bin/activate'
 alias dbget='~/.dbget.sh'
 alias tsd='~/src/scripts/tsd.sh'
+export GOPATH='~/src/gowork'
 
+source ~/src/dotfiles/misc/tmux.sh
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
@@ -26,6 +28,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH
 #export LIBRARY_PATH=$LIBRARY_PATH:/root/InvNeuralNet/rocksdb:/usr/local/lib
 export DISPLAY=:0
 export PYTHONSTARTUP=~/.pystartup
+export TZ=/etc/localtime
 # /etc/bash.bashrc
 #
 # https://wiki.archlinux.org/index.php/Color_Bash_Prompt
@@ -48,6 +51,8 @@ export PYTHONSTARTUP=~/.pystartup
 # http://cnswww.cns.cwru.edu/~chet/bash/FAQ (E11)
 shopt -s checkwinsize
 
+# avoid duplicates...
+export HISTCONTROL=ignoredups:erasedups
 # Enable history appending instead of overwriting.
 shopt -s histappend
 
@@ -59,6 +64,8 @@ case ${TERM} in
 		PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033_%s@%s:%s\033\\" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/~}"'
 		;;
 esac
+
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # Set colorful PS1 only on colorful terminals.
 # dircolors --print-database uses its own built-in database
@@ -97,7 +104,7 @@ if [[ $'\n'${match_lhs} == *$'\n'"TERM "${safe_term}* ]] ; then
 
 	alias ls="ls --color=auto"
 	alias dir="dir --color=auto"
-	alias grep="grep --color=auto"
+	alias grep="grep --color=auto -n"
 	alias dmesg='dmesg --color'
 
 else
@@ -124,4 +131,11 @@ unset safe_term match_lhs
 # Try to enable the "Command not found" hook
 [ -r /usr/share/doc/pkgfile/command-not-found.bash ] && . /usr/share/doc/pkgfile/command-not-found.bash
 
+id=`cat /var/lib/dbus/machine-id`
+alias venv='source /home/smstec/src/venv/bin/activate'
 venv
+
+if [ "$id" == "2912598ac18845bfa15e526ae8f20baf" ]; then
+    alias venv='source /home/smstec/src/venv/bin/activate'
+    venv
+fi
