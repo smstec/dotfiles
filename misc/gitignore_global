@@ -43,3 +43,6 @@ Thumbs.db
 # Python extras
 *.pyc
 *.pyx
+
+# smstec personal junk
+junk.ignore

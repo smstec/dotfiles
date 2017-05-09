@@ -11,10 +11,17 @@ alias tmux='tmux -2'
 alias tmuxn='tmux -2 new-session -s'
 alias tmuxa='tmux -2 attach-session -t'
 alias lm='ls -al; du -h'
+alias venvtf='deactivate; source ~/src/venv-tf/bin/activate'
 # alias venv='source /home/smstec/src/venv/bin/activate'
 alias dbget='~/.dbget.sh'
 alias tsd='~/src/scripts/tsd.sh'
 export GOPATH='~/src/gowork'
+stty -ixon -ixoff
+
+hgrep () {
+    history | egrep --color=auto "$@"
+}
+
 
 source ~/src/dotfiles/misc/tmux.sh
 # Source global definitions
@@ -24,7 +31,7 @@ fi
 #export PATH=/root/anaconda/bin:$PATH
 #export PATH=/usr/local/cuda/bin/:$PATH
 #export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH:/usr/local/lib
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 #export CUDA_HOME=/usr/local/cuda
 #export LIBRARY_PATH=$LIBRARY_PATH:/root/InvNeuralNet/rocksdb:/usr/local/lib
 export DISPLAY=:0
@@ -53,9 +60,19 @@ export TZ=/etc/localtime
 shopt -s checkwinsize
 
 # avoid duplicates...
-export HISTCONTROL=ignoredups:erasedups
-# Enable history appending instead of overwriting.
-shopt -s histappend
+HISTSIZE=9000
+HISTFILESIZE=$HISTSIZE
+export HISTCONTROL=ignorespace:ignoredups
+
+_bash_history_sync() {
+    builtin history -a
+    HISTFILESIZE=$HISTSIZE
+}
+
+history() {
+    _bash_history_sync
+    builtin history "$@"
+}
 
 case ${TERM} in
 	xterm*|rxvt*|Eterm|aterm|kterm|gnome*)
@@ -66,7 +83,8 @@ case ${TERM} in
 		;;
 esac
 
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+#export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+export PROMPT_COMMAND=_bash_history_sync
 
 # Set colorful PS1 only on colorful terminals.
 # dircolors --print-database uses its own built-in database

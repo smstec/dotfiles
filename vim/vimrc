@@ -10,7 +10,7 @@ set smarttab
 let g:flake8_show_quickfix=0 "don't show
 let g:autopep8_select="E127,E128,E201,E202,E203,E221,E225,E231,E251,E265,E302,E303,E305,E703,W191,W291,W293,W391"
 let g:autopep8_disable_show_diff=1
-let g:autopep8_max_line_length=109
+let g:autopep8_max_line_length=128
 let g:NERDDefaultAlign = 'left'
 let g:indent_guides_guide_size = 1
 let g:indent_guides_color_change_percent = 3
@@ -33,26 +33,28 @@ set wrapmargin=0
 set report=1
 set nowrap
 set autoread
-set expandtab
-set smarttab
 set preserveindent
 set ignorecase
-set softtabstop=4
-set tabstop=4
-set shiftwidth=4
 set number
-set textwidth=119
+set textwidth=140
 set syntax=python printfont=Courier:h7
 set ff=unix
 syntax enable
+syntax on
+filetype indent plugin on
 set background=dark
 "colorscheme solarized
 color dracula
 set undodir=~/.vim/undo//
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swp//
-set ttymouse=xterm2
+if !has('nvim')
+    set ttymouse=xterm2
+endif
+set mouse=a
 set title
+set titleold=""
+set titlestring=VIM:\ %F
 set ls=2
 let g:lightline = {
       \ 'colorscheme': 'solarized',
@@ -69,6 +71,9 @@ let g:lightline = {
       \   'readonly': '(&filetype!="help"&& &readonly)',
       \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
       \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+      \ },
+      \ 'component_function': {
+      \   'filename': 'MyFilename',
       \ }
       \ }
 let mapleader=","
@@ -122,3 +127,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+function! MyFilename()
+    return expand('%:p')
+endfunction

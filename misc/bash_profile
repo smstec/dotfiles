@@ -20,3 +20,4 @@ fi
 PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
 eval `dircolors ~/.dircolors`
+export HISTCONTROL=erasedups
