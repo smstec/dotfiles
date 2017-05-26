@@ -76,7 +76,6 @@ done
 ln -s ~/.dircolors ~/.dir_colors
 ln -s $cwd/keras ~/.keras
 ln -s $cwd/tmuxp ~/.tmuxp
-ln -s $cwd/vim/ftplugin/pytemplate.vim ~/.vim/ftplugin/pytemplate.vim
 
 
 
