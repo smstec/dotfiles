@@ -7,6 +7,7 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set smarttab
+set pastetoggle=<F3>
 let g:flake8_show_quickfix=0 "don't show
 let g:autopep8_select="E127,E128,E201,E202,E203,E221,E225,E231,E251,E265,E302,E303,E305,E703,W191,W291,W293,W391"
 let g:autopep8_disable_show_diff=1
