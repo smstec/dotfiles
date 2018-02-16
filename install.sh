@@ -5,6 +5,7 @@ set -e
 # # Install all of the stuff not on ec2 - probably need to sudo
 #    yum install tmux
 #    yum install ctags
+#    yum install pylint
 #    yum group install "Development Tools"
 #    yum install numpy
 #    pip install boto3
@@ -76,6 +77,3 @@ done
 ln -s ~/.dircolors ~/.dir_colors
 ln -s $cwd/keras ~/.keras
 ln -s $cwd/tmuxp ~/.tmuxp
-
-
-

@@ -4,6 +4,7 @@
 
 
 alias rm='rm -i'
+alias cat='ccat'
 alias cp='cp -i'
 alias mv='mv -i'
 alias gvim='vim'
@@ -36,6 +37,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 #export LIBRARY_PATH=$LIBRARY_PATH:/root/InvNeuralNet/rocksdb:/usr/local/lib
 export DISPLAY=:0
 export PYTHONSTARTUP=~/.pystartup
+export PYTHONPATH=$PYTHONPATH:/home/smstec/src/datascience
 export TZ=/etc/localtime
 # /etc/bash.bashrc
 #
@@ -95,6 +97,13 @@ export PROMPT_COMMAND=_bash_history_sync
 # sanitize TERM:
 safe_term=${TERM//[^[:alnum:]]/?}
 match_lhs=""
+
+# Initialize Z (https://github.com/rupa/z)
+. /usr/local/bin/z.sh
+
+if [ -f ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh ]; then
+    source ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
+fi
 
 [[ -f ~/.dir_colors ]] && match_lhs="${match_lhs}$(<~/.dir_colors)"
 [[ -f /etc/DIR_COLORS ]] && match_lhs="${match_lhs}$(</etc/DIR_COLORS)"
@@ -158,3 +167,4 @@ if [ "$id" == "2912598ac18845bfa15e526ae8f20baf" ]; then
     alias venv='source /home/smstec/src/venv/bin/activate'
     venv
 fi
+#eval "$(direnv hook bash)"

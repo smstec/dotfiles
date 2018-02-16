@@ -1,5 +1,6 @@
 execute pathogen#infect()
 
+set encoding=utf-8
 set ignorecase
 set number
 set softtabstop=4
@@ -16,10 +17,13 @@ let g:indent_guides_guide_size = 1
 let g:indent_guides_color_change_percent = 3
 let g:indent_guides_color_change_percent = 3
 let g:gitgutter_max_signs = 1000
+let g:vimwiki_list = [{'path': '~/vimwiki/'}]
 let Tlist_Use_Right_Window = 1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd vimenter * if !argc() | NERDTree | endif
 autocmd BufNewFile *.py source ~/.vim/ftplugin/pytemplate.vim
+autocmd BufWinLeave * mkview
+autocmd BufWinEnter * silent loadview
 filetype plugin on
 noremap  K k
 set nocompatible
@@ -44,7 +48,7 @@ syntax on
 filetype indent plugin on
 set background=dark
 "colorscheme solarized
-color dracula
+"color dracula
 set undodir=~/.vim/undo//
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swp//
@@ -102,7 +106,7 @@ map! L
 map! Q  
 map! R  
 
-if &term =~ "xterm"
+if &term =~ "putty"
     " 256 colors
     let &t_Co = 256
     " restore screen after quitting
@@ -122,6 +126,9 @@ noremap <Leader>T :TlistToggle
 noremap <Leader>js :%!python -m json.tool
 noremap <Leader>w :FixWhitespace
 noremap <Leader>n :NERDTree
+noremap <Leader>dt :windo diffthis
+noremap <Leader>do :windo diffo
+noremap <F5> :windo set invscrollbind<cr>
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -130,4 +137,9 @@ let g:syntastic_check_on_wq = 0
 
 function! MyFilename()
     return expand('%:p')
+endfunction
+
+au FileType qf call AdjustWindowHeight(3, 10)
+function! AdjustWindowHeight(minheight, maxheight)
+    exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
 endfunction
