@@ -13,6 +13,8 @@ set -e
 #    pip install click
 #    pip install numpy
 
+mkdir -p ~/.logs/
+
 cwd=$(pwd)
 
 # vim setup
