@@ -76,6 +76,7 @@ symlinks=( 'flake8'
            'bashrc'
            'bash_profile'
            'gitignore_global'
+           'pystartup'
          )
 for link in "${symlinks[@]}"
 do
