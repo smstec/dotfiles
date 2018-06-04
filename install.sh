@@ -35,7 +35,7 @@ echo "region = us-east-1" >> ~/.aws/config
 mkdir -p ~/.local/bin
 mkdir -p ~/.ccat
 wget https://github.com/jingweno/ccat/releases/download/v1.1.0/linux-amd64-1.1.0.tar.gz -O ~/.ccat/ccat.tgz
-tar xvzf ~/.ccat/ccat.tgz
+tar xvzf ~/.ccat/ccat.tgz --directory ~/.ccat/
 ln -s ~/.ccat/linux-amd64-1.1.0/ccat ~/.local/bin
 
 curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
