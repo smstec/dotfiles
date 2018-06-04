@@ -25,6 +25,19 @@ mkdir -p ~/.vim/backup
 mkdir -p ~/.vim/swp
 mkdir -p ~/.vim/undo
 mkdir -p ~/.vim/ftplugin
+
+# Create default AWS configuration file
+mkdir -p ~/.aws
+echo "[default]" > ~/.aws/config
+echo "region = us-east-1" >> ~/.aws/config
+
+# Download and "install" ccat
+mkdir -p ~/.local/bin
+mkdir -p ~/.ccat
+wget https://github.com/jingweno/ccat/releases/download/v1.1.0/linux-amd64-1.1.0.tar.gz -O ~/.ccat/ccat.tgz
+tar xvzf ~/.ccat/ccat.tgz
+ln -s ~/.ccat/linux-amd64-1.1.0/ccat ~/.local/bin
+
 curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 plugins=( "https://github.com/Raimondi/delimitMate.git"
           "https://github.com/scrooloose/nerdtree.git"
