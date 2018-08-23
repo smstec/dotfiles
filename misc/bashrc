@@ -35,7 +35,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 #export LIBRARY_PATH=$LIBRARY_PATH:/root/InvNeuralNet/rocksdb:/usr/local/lib
 export DISPLAY=:0
 export PYTHONSTARTUP=~/.pystartup
-export PYTHONPATH=$PYTHONPATH:/home/smstec/src/datascience
+source ~/.pythonpath 2> /dev/null
 export TZ=/etc/localtime
 # /etc/bash.bashrc
 #
@@ -157,3 +157,4 @@ unset safe_term match_lhs
 [ -r /usr/share/doc/pkgfile/command-not-found.bash ] && . /usr/share/doc/pkgfile/command-not-found.bash
 
 #eval "$(direnv hook bash)"
+source ~/.redshift 2> /dev/null
