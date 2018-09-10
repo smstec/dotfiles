@@ -44,6 +44,9 @@ Thumbs.db
 *.pyc
 *.pyx
 
+# Images
+*.png
+
 # smstec personal junk
 junk.ignore
 *.save

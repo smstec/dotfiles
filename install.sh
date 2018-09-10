@@ -25,6 +25,7 @@ mkdir -p ~/.vim/backup
 mkdir -p ~/.vim/swp
 mkdir -p ~/.vim/undo
 mkdir -p ~/.vim/ftplugin
+mkdir -p ~/.config/
 
 # Create default AWS configuration file
 mkdir -p ~/.aws
@@ -75,7 +76,6 @@ symlinks=( 'flake8'
            'inputrc'
            'bashrc'
            'bash_profile'
-           'gitignore_global'
            'pystartup'
            'pylintrc'
            'redshift'
@@ -96,3 +96,4 @@ done
 ln -s ~/.dircolors ~/.dir_colors
 ln -s $cwd/keras ~/.keras
 ln -s $cwd/tmuxp ~/.tmuxp
+ln -s $cwd/git ~/.config/git
